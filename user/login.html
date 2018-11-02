@@ -51,25 +51,48 @@
     <script src="../res/mui/js/mui.min.js"></script>
     <!-- 当用户提交表单 获取用户名和密码   提交给后端 -->
     <script>
-         $('form').on('submit',function(){
+        // $('form').on('submit', function () {
+        //     //  alert(1)
+        //     // 1 获取用户所有数据
+        //     var data = $(this).serialize()
+        //     // 2 发送到后端
+        //     $.ajax({
+        //         url: 'http://localhost:3000/user/login',
+        //         type: 'post',
+        //         data: data,
+        //         xhrFields: {
+        //             withCredentials: true
+        //         },
+        //         success: function (info) {
+        //             if (info.success) {
+        //                 location.href = '../index.html';
+        //             }
+        //         }
+
+        //     });
+        //     // 阻止默认提交
+        //     return false;
+        // })
+
+          $('form').on('submit', function () {
             //  alert(1)
             // 1 获取用户所有数据
             var data = $(this).serialize()
             // 2 发送到后端
             $.ajax({
-                url: 'http://localhost:3000/user/login',
-                type:'post',
-                data:data,
-                success:function(info){
-                    if(info.success){
-                        location.href='../index.html';
+                url: '/api/user/login',
+                type: 'post',
+                data: data,
+                success: function (info) {
+                    if (info.success) {
+                        location.href = '../index.html';
                     }
                 }
-                
+
             });
             // 阻止默认提交
             return false;
-         })
+        })
     </script>
 </body>
 

@@ -20,18 +20,23 @@
         <span class="title">收货地址管理</span>
     </header>
     <div class="cz_container">
+        <form action="">
         <div class="form_box">
             <div class="mui-input-row">
-                <input name="delivery" type="text" placeholder="收货人">
+                <input name="recipients" type="text" placeholder="收货人">
             </div>
             <div class="mui-input-row">
                 <input name="postCode" type="text" placeholder="邮编">
             </div>
             <div class="mui-input-row">
-                <textarea name="address" id="textarea" rows="5" placeholder="多行文本框"></textarea>
+                    <input name="adress" type="text" placeholder="省市县">
+                </div>
+            <div class="mui-input-row">
+                <textarea name="addressDetail" id="textarea" rows="5" placeholder="多行文本框"></textarea>
             </div>
-            <a href="index.html" class="mui-btn mui-btn-primary btn_login">确认</a>
+            <button class="mui-btn mui-btn-primary btn_login">确认</button>
         </div>
+    </form>
     </div>
     <footer class="cz_tabs">
         <a class="tab_home fa fa-home" href="../index.html"><span>首页</span></a>
@@ -40,6 +45,30 @@
         <a class="tab_user fa fa-user" href="../user/index.html"><span>会员中心</span></a>
     </footer>
 </div>
+<script src="../js/jquery.js"></script>
 <script src="../res/mui/js/mui.min.js"></script>
+<script>
+    // 传统方式
+    $('form').on('submit',function(){
+        var data = $(this).serialize();
+        $.ajax({
+            url: '/api/address/addAddress',
+                type: 'post',
+                data: data,
+                success: function (info) {
+                    console.log(info);
+                    // 未登录
+                    if(info.error) return location.href = '/user/login.html';
+
+                    // 添加成功
+                    location.href = '/user/address.html';
+                }
+            })
+            return false;
+        })
+
+        // ajaxForm插件
+
+</script>
 </body>
 </html>
