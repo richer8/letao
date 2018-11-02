@@ -48,26 +48,10 @@
 <script src="../js/jquery.js"></script>
 <script src="../res/mui/js/mui.min.js"></script>
 <script>
-    // 传统方式
-    $('form').on('submit',function(){
-        var data = $(this).serialize();
-        $.ajax({
-            url: '/api/address/addAddress',
-                type: 'post',
-                data: data,
-                success: function (info) {
-                    console.log(info);
-                    // 未登录
-                    if(info.error) return location.href = '/user/login.html';
+    // 先将原来地址的id的数据查出来   再修改   提交给服务端
+    //1获取地址id
+    
 
-                    // 添加成功
-                    location.href = '/user/address.html';
-                }
-            })
-            return false;
-        })
-
-        // ajaxForm插件
 
 </script>
 </body>
